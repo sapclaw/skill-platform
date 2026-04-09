@@ -66,7 +66,11 @@ export default function SkillDetailPage() {
             </div>
           </div>
           <div className="flex items-center gap-4 mt-8">
-            <button onClick={handleCopy} className="inline-flex items-center gap-2 px-4 py-2 rounded-lg border border-border hover:bg-muted/50">
+            <Link href="/playground" className="inline-flex items-center gap-2 px-6 py-3 rounded-lg bg-gradient-to-r from-amber-500 to-orange-500 text-white font-medium hover:shadow-lg hover:shadow-amber-500/25 transition-all">
+              <Sparkles className="w-5 h-5" />
+              在线体验
+            </Link>
+            <button onClick={handleCopy} className="inline-flex items-center gap-2 px-4 py-3 rounded-lg border border-border hover:bg-muted/50">
               {copied ? <Check className="w-4 h-4" /> : <Copy className="w-4 h-4" />}
               复制导入语句
             </button>

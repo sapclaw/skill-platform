@@ -1,20 +1,18 @@
 import Link from 'next/link';
-import { Sparkles, Github, Mail } from 'lucide-react';
+import { Github, Mail } from 'lucide-react';
 
 export default function Footer() {
   return (
     <footer className="border-t border-border bg-card">
-      <div className="max-w-7xl mx-auto px-6 py-12">
+      <div className="max-w-7xl mx-auto px-6 py-10">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
           {/* Logo & Description */}
           <div className="md:col-span-2">
             <div className="flex items-center gap-3 mb-4">
-              <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-amber-500 to-orange-500 flex items-center justify-center">
-                <Sparkles className="w-5 h-5 text-white" />
-              </div>
+              <img src="/logo-brand.png" alt="龙标" className="w-10 h-10" />
               <div>
-                <div className="font-bold text-foreground">数字工匠</div>
-                <div className="text-xs text-muted-foreground">智能体技能组件平台</div>
+                <div className="font-bold text-foreground">智能体技能组件平台</div>
+                <div className="text-xs text-muted-foreground">开发与测试</div>
               </div>
             </div>
             <p className="text-sm text-muted-foreground max-w-md">
@@ -53,7 +51,7 @@ export default function Footer() {
         </div>
 
         {/* Bottom Bar */}
-        <div className="pt-8 border-t border-border flex flex-col sm:flex-row items-center justify-between gap-4">
+        <div className="pt-6 border-t border-border flex flex-col sm:flex-row items-center justify-between gap-4">
           <div className="text-sm text-muted-foreground">
             © 2024 数字龙标智能体服务平台. All rights reserved.
           </div>

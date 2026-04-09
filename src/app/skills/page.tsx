@@ -60,7 +60,7 @@ export default function SkillsPage() {
             const category = categories.find(c => c.id === skill.category);
             const Icon = iconComponents[category?.icon || 'Brain'] || Brain;
             return (
-              <Link key={skill.id} href={`/skills/${skill.slug}`} className="group p-6 rounded-xl border bg-card hover:bg-muted/30 transition-all hover:border-amber-500/30">
+              <Link key={skill.id} href={`/skill-platform/skills/${skill.slug}`} className="group p-6 rounded-xl border bg-card hover:bg-muted/30 transition-all hover:border-amber-500/30">
                 <div className="flex items-start gap-4 mb-4">
                   <div className="w-12 h-12 rounded-lg flex items-center justify-center" style={{ backgroundColor: `${category?.color}15` }}>
                     <Icon className="w-6 h-6" style={{ color: category?.color }} />

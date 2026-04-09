@@ -6,8 +6,8 @@ import Footer from '@/components/Footer';
 
 export const metadata: Metadata = {
   title: {
-    default: '数字龙标智能体服务平台 | 数字龙标',
-    template: '%s | 数字龙标智能体服务平台',
+    default: '智能体技能组件开发与测试平台',
+    template: '%s | 智能体技能组件开发与测试平台',
   },
   description:
     '智能体技能组件开发与测试平台，汇聚38+精选技能组件，涵盖AI能力、数据库存储、集成服务等领域，助力数字工匠高效构建智能体应用。',
@@ -26,13 +26,14 @@ export const metadata: Metadata = {
   generator: '扣子编程',
   icons: {
     icon: '/favicon.ico',
+    apple: '/icon.png',
   },
   openGraph: {
-    title: '数字龙标智能体服务平台 | 数字龙标',
+    title: '智能体技能组件开发与测试平台',
     description:
       '汇聚38+精选技能组件，涵盖AI能力、数据库存储、集成服务等领域',
-    url: 'https://skill.longbiao.com',
-    siteName: '数字龙标智能体平台',
+    url: '/skill-platform',
+    siteName: '智能体技能组件开发与测试平台',
     locale: 'zh_CN',
     type: 'website',
   },
