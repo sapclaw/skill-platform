@@ -1,7 +1,6 @@
 import type { NextConfig } from 'next';
 
 const nextConfig: NextConfig = {
-  basePath: '/skill-platform',
   outputFileTracingRoot: '/opt/skill-platform',
   images: {
     remotePatterns: [
