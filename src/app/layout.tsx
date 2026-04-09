@@ -6,8 +6,8 @@ import Footer from '@/components/Footer';
 
 export const metadata: Metadata = {
   title: {
-    default: '智能体技能组件平台 | 数字龙标',
-    template: '%s | 智能体技能组件平台',
+    default: '数字龙标智能体服务平台 | 数字龙标',
+    template: '%s | 数字龙标智能体服务平台',
   },
   description:
     '智能体技能组件开发与测试平台，汇聚38+精选技能组件，涵盖AI能力、数据库存储、集成服务等领域，助力数字工匠高效构建智能体应用。',
@@ -28,7 +28,7 @@ export const metadata: Metadata = {
     icon: '/favicon.ico',
   },
   openGraph: {
-    title: '智能体技能组件平台 | 数字龙标',
+    title: '数字龙标智能体服务平台 | 数字龙标',
     description:
       '汇聚38+精选技能组件，涵盖AI能力、数据库存储、集成服务等领域',
     url: 'https://skill.longbiao.com',
