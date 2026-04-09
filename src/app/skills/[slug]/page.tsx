@@ -39,14 +39,16 @@ export default function SkillDetailPage() {
 
   return (
     <div className="min-h-screen bg-background">
-      <header className="border-b border-border bg-card/50 backdrop-blur-xl sticky top-0 z-50">
-        <div className="max-w-7xl mx-auto px-6 py-4">
-          <Link href="/" className="inline-flex items-center gap-2 text-muted-foreground hover:text-foreground">
+      {/* Breadcrumb */}
+      <div className="border-b border-border bg-card/50">
+        <div className="max-w-7xl mx-auto px-6 py-3">
+          <Link href="/" className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground">
             <ArrowLeft className="w-4 h-4" />返回首页
           </Link>
         </div>
-      </header>
+      </div>
 
+      {/* Hero Section */}
       <section className="relative overflow-hidden border-b border-border bg-gradient-to-br from-amber-500/5 to-orange-500/5">
         <div className="max-w-7xl mx-auto px-6 py-16">
           <div className="flex items-start gap-8">

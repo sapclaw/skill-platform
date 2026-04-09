@@ -21,16 +21,7 @@ export default function SkillsPage() {
 
   return (
     <div className="min-h-screen bg-background">
-      <header className="border-b border-border bg-card/50 backdrop-blur-xl sticky top-0 z-50">
-        <div className="max-w-7xl mx-auto px-6 py-4">
-          <div className="flex items-center justify-between">
-            <Link href="/" className="text-muted-foreground hover:text-foreground">← 返回首页</Link>
-            <h1 className="text-xl font-bold text-foreground">技能组件库</h1>
-            <div className="w-20" />
-          </div>
-        </div>
-      </header>
-
+      {/* Hero Section */}
       <section className="border-b border-border bg-gradient-to-br from-amber-500/5 to-orange-500/5">
         <div className="max-w-7xl mx-auto px-6 py-16 text-center">
           <h1 className="text-4xl font-bold text-foreground mb-4">全部技能组件</h1>
@@ -43,6 +34,7 @@ export default function SkillsPage() {
         </div>
       </section>
 
+      {/* Category Filter */}
       <section className="border-b border-border bg-card/30">
         <div className="max-w-7xl mx-auto px-6 py-4">
           <div className="flex items-center gap-2 overflow-x-auto">

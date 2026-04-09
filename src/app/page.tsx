@@ -4,7 +4,8 @@ import { useState } from 'react';
 import Link from 'next/link';
 import { skills, categories } from '../data/skills';
 import { 
-  Sparkles, ArrowRight, ChevronRight, Search, Star, Brain, Database, Plug, Layout, Smartphone, Server
+  Sparkles, ArrowRight, ChevronRight, Search, Star, Brain, Database, Plug, Layout, Smartphone, Server,
+  Zap, Shield, Rocket, Users
 } from 'lucide-react';
 
 type IconComponent = React.ComponentType<React.SVGProps<SVGSVGElement> & { className?: string }>;
@@ -27,9 +28,15 @@ export default function HomePage() {
 
   return (
     <div className="min-h-screen bg-background">
-      {/* Hero */}
+      {/* Hero Section */}
       <section className="relative overflow-hidden border-b border-border bg-gradient-to-br from-amber-500/5 via-background to-orange-500/5">
-        <div className="max-w-7xl mx-auto px-6 py-24 text-center">
+        {/* Decorative Background */}
+        <div className="absolute inset-0 overflow-hidden pointer-events-none">
+          <div className="absolute top-20 left-10 w-72 h-72 bg-amber-500/10 rounded-full blur-3xl"></div>
+          <div className="absolute bottom-20 right-10 w-96 h-96 bg-orange-500/10 rounded-full blur-3xl"></div>
+        </div>
+        
+        <div className="relative max-w-7xl mx-auto px-6 py-24 text-center">
           <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-amber-500/10 border border-amber-500/20 mb-6">
             <Sparkles className="w-4 h-4 text-amber-500" />
             <span className="text-sm font-medium text-amber-500">智能体技能组件平台</span>
@@ -55,14 +62,18 @@ export default function HomePage() {
             </Link>
           </div>
 
+          {/* Stats Grid */}
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8 max-w-4xl mx-auto">
             {[
-              { label: '技能组件', value: skills.length },
-              { label: '技能分类', value: categories.length },
-              { label: '使用场景', value: '100+' },
-              { label: '开发者', value: '10K+' }
+              { label: '技能组件', value: skills.length, icon: Sparkles },
+              { label: '技能分类', value: categories.length, icon: Layout },
+              { label: '使用场景', value: '100+', icon: Rocket },
+              { label: '开发者', value: '10K+', icon: Users }
             ].map((stat, i) => (
-              <div key={i} className="text-center">
+              <div key={i} className="text-center group">
+                <div className="inline-flex items-center justify-center w-12 h-12 rounded-xl bg-gradient-to-br from-amber-500/10 to-orange-500/10 mb-3 group-hover:scale-110 transition-transform">
+                  <stat.icon className="w-6 h-6 text-amber-500" />
+                </div>
                 <div className="text-3xl font-bold text-foreground">{stat.value}</div>
                 <div className="text-sm text-muted-foreground mt-1">{stat.label}</div>
               </div>
@@ -71,8 +82,8 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Search */}
-      <section className="sticky top-0 z-50 bg-background/80 backdrop-blur-xl border-b border-border">
+      {/* Search & Filter Section */}
+      <section className="sticky top-16 z-40 bg-background/80 backdrop-blur-xl border-b border-border">
         <div className="max-w-7xl mx-auto px-6 py-4">
           <div className="flex flex-col md:flex-row items-center gap-4">
             <div className="relative w-full md:w-96">
@@ -103,15 +114,19 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Skills Grid */}
+      {/* Skills Grid Section */}
       <section className="max-w-7xl mx-auto px-6 py-16">
+        <div className="mb-8">
+          <h2 className="text-2xl font-bold text-foreground mb-2">技能组件</h2>
+          <p className="text-muted-foreground">找到 {filteredSkills.length} 个技能组件</p>
+        </div>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
           {filteredSkills.map(skill => {
             const category = categories.find(c => c.id === skill.category);
             const Icon = iconComponents[category?.icon || 'Brain'] || Brain;
             return (
               <Link key={skill.id} href={`/skills/${skill.slug}`}
-                className="group p-6 rounded-xl border bg-card hover:bg-muted/30 transition-all hover:border-amber-500/30">
+                className="group p-6 rounded-xl border bg-card hover:bg-muted/30 transition-all hover:border-amber-500/30 hover:shadow-lg hover:shadow-amber-500/5">
                 <div className="flex items-start gap-4 mb-4">
                   <div className="w-12 h-12 rounded-lg flex items-center justify-center" style={{ backgroundColor: `${category?.color}15` }}>
                     <Icon className="w-6 h-6" style={{ color: category?.color }} />
@@ -132,7 +147,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Featured */}
+      {/* Featured Section */}
       <section className="border-t border-border bg-muted/30">
         <div className="max-w-7xl mx-auto px-6 py-20">
           <div className="text-center mb-12">
@@ -141,6 +156,7 @@ export default function HomePage() {
               <span className="text-sm font-medium text-amber-500">精选推荐</span>
             </div>
             <h2 className="text-3xl font-bold text-foreground mb-4">最受欢迎的技能组件</h2>
+            <p className="text-muted-foreground">这些技能组件在开发中被广泛使用</p>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {['llm', 'image-generation', 'supabase'].map(slug => {
@@ -149,15 +165,18 @@ export default function HomePage() {
               const category = categories.find(c => c.id === skill.category);
               const Icon = iconComponents[category?.icon || 'Brain'] || Brain;
               return (
-                <Link key={skill.id} href={`/skills/${skill.slug}`} className="group p-6 rounded-xl border bg-card hover:bg-muted/30 transition-all">
-                  <div className="flex items-start gap-4">
+                <Link key={skill.id} href={`/skills/${skill.slug}`} className="group p-6 rounded-xl border bg-card hover:bg-muted/30 transition-all hover:shadow-lg">
+                  <div className="flex items-start gap-4 mb-4">
                     <div className="w-14 h-14 rounded-xl flex items-center justify-center" style={{ backgroundColor: `${category?.color}15` }}>
                       <Icon className="w-7 h-7" style={{ color: category?.color }} />
                     </div>
                     <div>
-                      <h3 className="font-semibold text-foreground group-hover:text-amber-500">{skill.name}</h3>
+                      <h3 className="font-semibold text-foreground group-hover:text-amber-500 mb-1">{skill.name}</h3>
                       <p className="text-sm text-muted-foreground">{skill.description}</p>
                     </div>
+                  </div>
+                  <div className="flex items-center gap-2 text-amber-500 text-sm font-medium">
+                    查看详情 <ChevronRight className="w-4 h-4" />
                   </div>
                 </Link>
               );
@@ -166,7 +185,45 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* CTA */}
+      {/* Features Section */}
+      <section className="max-w-7xl mx-auto px-6 py-20">
+        <div className="text-center mb-12">
+          <h2 className="text-3xl font-bold text-foreground mb-4">为什么选择我们</h2>
+          <p className="text-muted-foreground">专业的技能组件，助你高效开发</p>
+        </div>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          {[
+            {
+              icon: Zap,
+              title: '开箱即用',
+              description: '所有技能组件都经过精心设计，接入简单快捷',
+              color: '#f59e0b'
+            },
+            {
+              icon: Shield,
+              title: '安全可靠',
+              description: '严格的安全审查，确保生产环境稳定运行',
+              color: '#10b981'
+            },
+            {
+              icon: Rocket,
+              title: '持续更新',
+              description: '技能组件持续迭代，紧跟技术发展趋势',
+              color: '#3b82f6'
+            }
+          ].map((feature, i) => (
+            <div key={i} className="p-6 rounded-xl border bg-card">
+              <div className="w-12 h-12 rounded-lg flex items-center justify-center mb-4" style={{ backgroundColor: `${feature.color}15` }}>
+                <feature.icon className="w-6 h-6" style={{ color: feature.color }} />
+              </div>
+              <h3 className="text-lg font-semibold text-foreground mb-2">{feature.title}</h3>
+              <p className="text-sm text-muted-foreground">{feature.description}</p>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* CTA Section */}
       <section className="max-w-4xl mx-auto px-6 py-20 text-center">
         <h2 className="text-3xl font-bold text-foreground mb-6">准备好开始构建了吗？</h2>
         <p className="text-muted-foreground mb-8">浏览完整的技能文档，开始构建你的智能体应用</p>
@@ -176,27 +233,6 @@ export default function HomePage() {
           </Link>
         </div>
       </section>
-
-      {/* Footer */}
-      <footer className="border-t border-border bg-card">
-        <div className="max-w-7xl mx-auto px-6 py-8">
-          <div className="flex items-center justify-between">
-            <div className="flex items-center gap-3">
-              <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-amber-500 to-orange-500 flex items-center justify-center">
-                <Sparkles className="w-5 h-5 text-white" />
-              </div>
-              <div>
-                <div className="font-semibold text-foreground">智能体技能组件平台</div>
-                <div className="text-sm text-muted-foreground">Powered by 扣子编程</div>
-              </div>
-            </div>
-            <div className="flex items-center gap-6 text-sm text-muted-foreground">
-              <Link href="/skills" className="hover:text-foreground">技能组件</Link>
-              <Link href="/playground" className="hover:text-foreground">在线体验</Link>
-            </div>
-          </div>
-        </div>
-      </footer>
     </div>
   );
 }
